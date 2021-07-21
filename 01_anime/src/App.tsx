@@ -42,34 +42,32 @@ export const App = () => {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* Search */}
-        <div>
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <button onClick={fetchAnimeData}>Search</button>
-        </div>
+    <div className="font-sans antialiased bg-gray-900 text-white text-center">
+      {/* Search */}
+      <div>
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button onClick={fetchAnimeData}>Search</button>
+      </div>
 
-        {/* Results */}
-        <div>
-          {results.map((result, i) => {
-            return (
-              <div key={i}>
-                <img src={result.image_url} alt="" />
-                <div>{result.title}</div>
-                <div>{result.synopsis}</div>
-                <div>{result.score}</div>
-                <div>{result.episodes}</div>
-                <div>{result.title}</div>
-              </div>
-            );
-          })}
-        </div>
-      </header>
+      {/* Results */}
+      <div>
+        {results.map((result, i) => {
+          return (
+            <div key={i}>
+              <img src={result.image_url} alt="" />
+              <div>{result.title}</div>
+              <div>{result.synopsis}</div>
+              <div>{result.score}</div>
+              <div>{result.episodes}</div>
+              <div>{result.title}</div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
