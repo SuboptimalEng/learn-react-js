@@ -1,19 +1,49 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
-export const App = () => {
-  const [shows, setShows] = useState<Array<any>>([]);
+interface IAnime {
+  title: string;
+  imageUrl: string;
+  episodes: number;
+  synopsis: string;
+  score: number;
+}
 
-  const fetchAnimeData = () => {
+export const App = () => {
+  // const [likedAnime, setLikedAnime] = useState<Array<IAnime>>([]);
+  // const [dislikedAnime, setDislikedAnime] = useState<Array<IAnime>>([]);
+  const [query, setQuery] = useState<string>('naruto');
+  const [results, setResults] = useState<Array<IAnime>>([]);
+
+  // Fetch anime data on page load.
+  useEffect(() => {
+    fetchAnimeData();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Testing useEffect.
+  // useEffect(() => {
+  //   console.log(query);
+  // }, [query]);
+
+  const fetchAnimeData = (): void => {
     // Define the config we'll need for our Api request
-    const url = 'https://api.jikan.moe/v3/anime/1';
+    const url = `https://api.jikan.moe/v3/search/anime?q=${query}`;
 
     // Make the HTTP Api request
     fetch(url)
       .then((response: Response) => response.json())
       .then((data) => {
-        console.log(data, shows);
-        setShows([...shows, data.abc]);
+        const results: Array<IAnime> = [];
+        data.results.forEach((result: any) => {
+          results.push({
+            title: result.title,
+            imageUrl: result.image_url,
+            episodes: result.episodes,
+            synopsis: result.synopsis,
+            score: result.score,
+          });
+        });
+        setResults(results);
       })
       .catch((error) => {
         alert('Error, check console');
@@ -24,7 +54,24 @@ export const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <button onClick={fetchAnimeData}>fetch</button>
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button onClick={fetchAnimeData}>Search</button>
+        {results.map((result, i) => {
+          return (
+            <div key={i}>
+              <img src={result.imageUrl} alt="" />
+              <div>{result.title}</div>
+              <div>{result.synopsis}</div>
+              <div>{result.score}</div>
+              <div>{result.episodes}</div>
+              <div>{result.title}</div>
+            </div>
+          );
+        })}
       </header>
     </div>
   );
