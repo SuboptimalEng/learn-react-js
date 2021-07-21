@@ -3,7 +3,7 @@ import './App.css';
 
 interface IAnime {
   title: string;
-  imageUrl: string;
+  image_url: string;
   episodes: number;
   synopsis: string;
   score: number;
@@ -33,17 +33,7 @@ export const App = () => {
     fetch(url)
       .then((response: Response) => response.json())
       .then((data) => {
-        const results: Array<IAnime> = [];
-        data.results.forEach((result: any) => {
-          results.push({
-            title: result.title,
-            imageUrl: result.image_url,
-            episodes: result.episodes,
-            synopsis: result.synopsis,
-            score: result.score,
-          });
-        });
-        setResults(results);
+        setResults([...data.results]);
       })
       .catch((error) => {
         alert('Error, check console');
@@ -54,24 +44,31 @@ export const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <button onClick={fetchAnimeData}>Search</button>
-        {results.map((result, i) => {
-          return (
-            <div key={i}>
-              <img src={result.imageUrl} alt="" />
-              <div>{result.title}</div>
-              <div>{result.synopsis}</div>
-              <div>{result.score}</div>
-              <div>{result.episodes}</div>
-              <div>{result.title}</div>
-            </div>
-          );
-        })}
+        {/* Search */}
+        <div>
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button onClick={fetchAnimeData}>Search</button>
+        </div>
+
+        {/* Results */}
+        <div>
+          {results.map((result, i) => {
+            return (
+              <div key={i}>
+                <img src={result.image_url} alt="" />
+                <div>{result.title}</div>
+                <div>{result.synopsis}</div>
+                <div>{result.score}</div>
+                <div>{result.episodes}</div>
+                <div>{result.title}</div>
+              </div>
+            );
+          })}
+        </div>
       </header>
     </div>
   );
