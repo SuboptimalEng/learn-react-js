@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 import './App.css';
 
 interface IAnime {
@@ -12,8 +15,11 @@ interface IAnime {
 export const App = () => {
   // const [likedAnime, setLikedAnime] = useState<Array<IAnime>>([]);
   // const [dislikedAnime, setDislikedAnime] = useState<Array<IAnime>>([]);
-  const [query, setQuery] = useState<string>('naruto');
-  const [results, setResults] = useState<Array<IAnime>>([]);
+  const [query, setQuery] =
+    useState<string>('naruto');
+  const [results, setResults] = useState<
+    Array<IAnime>
+  >([]);
 
   // Fetch anime data on page load.
   useEffect(() => {
@@ -31,7 +37,9 @@ export const App = () => {
 
     // Make the HTTP Api request
     fetch(url)
-      .then((response: Response) => response.json())
+      .then((response: Response) =>
+        response.json()
+      )
       .then((data) => {
         setResults([...data.results]);
       })
@@ -42,31 +50,46 @@ export const App = () => {
   };
 
   return (
-    <div className="font-sans antialiased bg-gray-900 text-white text-center">
-      {/* Search */}
-      <div>
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <button onClick={fetchAnimeData}>Search</button>
-      </div>
+    <div className="font-sans antialiased  bg-gray-900 text-white">
+      <div className="text-center">
+        {/* Search */}
+        <div>
+          <input
+            type="text"
+            value={query}
+            onChange={(e) =>
+              setQuery(e.target.value)
+            }
+            className="text-black"
+          />
+          <button onClick={fetchAnimeData}>
+            Search
+          </button>
+        </div>
 
-      {/* Results */}
-      <div>
-        {results.map((result, i) => {
-          return (
-            <div key={i}>
-              <img src={result.image_url} alt="" />
-              <div>{result.title}</div>
-              <div>{result.synopsis}</div>
-              <div>{result.score}</div>
-              <div>{result.episodes}</div>
-              <div>{result.title}</div>
-            </div>
-          );
-        })}
+        {/* Results */}
+        <div className="flex flex-col space-y-2">
+          {results.map((result, i) => {
+            return (
+              <div className="border">
+                <div
+                  key={i}
+                  className="flex flex-col place-items-center"
+                >
+                  <img
+                    src={result.image_url}
+                    alt=""
+                    className="w-40"
+                  />
+                  <div>{result.title}</div>
+                  <div>{result.score}</div>
+                  <div>{result.episodes}</div>
+                  <div>{result.synopsis}</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
