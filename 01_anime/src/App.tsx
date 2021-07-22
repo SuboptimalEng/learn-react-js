@@ -44,17 +44,17 @@ export const App = () => {
   };
 
   return (
-    <div className="font-sans antialiased  bg-black text-white py-8 flex flex-col place-items-center">
-      <div className="text-center flex flex-col space-y-8 w-5/12">
+    <div className="font-sans antialiased  bg-gray-100 text-gray-900 py-8 flex flex-col place-items-center">
+      <div className="text-center flex flex-col space-y-8 w-7/12 lg:w-5/12">
         {/* Search */}
-        <div className="">
+        <div>
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="text-white bg-black border focus:outline-none rounded-l-lg p-2"
+            className="border focus:outline-none rounded-l-lg p-2"
           />
-          <button onClick={fetchAnimeData} className="border rounded-r-lg p-2">
+          <button onClick={fetchAnimeData} className="border bg-gray-200 rounded-r-lg p-2">
             Search
           </button>
         </div>

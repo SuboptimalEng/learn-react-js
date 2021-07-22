@@ -11,17 +11,20 @@ export const AnimeCard = (props: IAnime) => {
     cardColor = 'bg-green-400';
   }
 
-  const cardClass = `flex rounded-lg ${cardColor} text-black`;
+  const cardClass = `flex rounded-lg ${cardColor} text-black shadow-xl `;
 
   return (
     <div key={props.i} className={cardClass}>
-      <img src={props.image_url} alt="" className="w-40 rounded-lg" />
-      <div className="p-4 w-full rounded-lg ">
-        <div className="text-4xl font-bold h-full flex place-items-center text-left space-x-4 justify-between">
-          <div className="w-64">{props.title}</div>
-          <div className="border-2 border-black w-36 h-36 rounded-full flex place-items-center ">
-            <div className="text-6xl text-center w-full">{Math.round(props.score * 10) / 10}</div>
+      <img src={props.image_url} alt="" className="w-36 rounded-l-lg " />
+      <div className="p-4 w-full rounded-lg flex place-items-center my-2 ">
+        <div className="flex flex-col space-y-2 ">
+          <div className=" font-bold h-full flex place-items-center text-left justify-between">
+            <div className="text-2xl w-64">{props.title}</div>
+            <div className="border-2 border-black w-12 h-10 rounded-lg flex place-items-center ">
+              <div className="text-xl text-center w-full">{Math.round(props.score * 10) / 10}</div>
+            </div>
           </div>
+          <div className="text-sm font-medium text-left">{props.synopsis}</div>
         </div>
         {/* <div>Episodes: {props.episodes}</div> */}
         {/* <div>Synopsis: {props.synopsis}</div> */}
