@@ -13,10 +13,23 @@ export const AnimeCard = (props: IAnime) => {
 
   const cardClass = `flex rounded-lg ${cardColor} text-black shadow-xl `;
 
+  const favoriteShow = () => {
+    props.setFavorites([
+      ...props.favorites,
+      {
+        image_url: props.image_url,
+        title: props.title,
+        score: props.score,
+        episodes: props.episodes,
+        synopsis: props.synopsis,
+      },
+    ]);
+  };
+
   return (
-    <div key={props.i} className={cardClass}>
+    <div key={props.i} className={cardClass} onClick={favoriteShow}>
       <img src={props.image_url} alt="" className="w-36 rounded-l-lg " />
-      <div className="p-4 w-full rounded-lg flex place-items-center my-2 ">
+      <div className="p-4 w-full rounded-lg flex place-items-center my-2">
         <div className="flex flex-col space-y-2 ">
           <div className=" font-bold h-full flex place-items-center text-left justify-between">
             <div className="text-2xl w-64">{props.title}</div>
@@ -26,8 +39,6 @@ export const AnimeCard = (props: IAnime) => {
           </div>
           <div className="text-sm font-medium text-left">{props.synopsis}</div>
         </div>
-        {/* <div>Episodes: {props.episodes}</div> */}
-        {/* <div>Synopsis: {props.synopsis}</div> */}
       </div>
     </div>
   );

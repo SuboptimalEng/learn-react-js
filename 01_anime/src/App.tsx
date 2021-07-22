@@ -9,6 +9,8 @@ export interface IAnime {
   episodes: number;
   synopsis: string;
   score: number;
+  favorites?: any;
+  setFavorites?: any;
 }
 
 export const App = () => {
@@ -16,11 +18,21 @@ export const App = () => {
   // const [dislikedAnime, setDislikedAnime] = useState<Array<IAnime>>([]);
   const [query, setQuery] = useState<string>('naruto');
   const [results, setResults] = useState<Array<IAnime>>([]);
+  const [showFavorites, setShowFavorites] = useState<boolean>(false);
+  const [favorites, setFavorites] = useState<Array<IAnime>>([]);
 
   // Fetch anime data on page load.
   useEffect(() => {
     fetchAnimeData();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    console.log(favorites);
+  }, [favorites]);
+
+  useEffect(() => {
+    console.log(showFavorites);
+  }, [showFavorites]);
 
   // Testing useEffect.
   // useEffect(() => {
@@ -28,6 +40,8 @@ export const App = () => {
   // }, [query]);
 
   const fetchAnimeData = (): void => {
+    setShowFavorites(false);
+
     // Define the config we'll need for our Api request
     const url = `https://api.jikan.moe/v3/search/anime?q=${query}`;
 
@@ -43,36 +57,61 @@ export const App = () => {
       });
   };
 
+  const toggleFavoritesSection = () => {
+    setShowFavorites(!showFavorites);
+  };
+
   return (
-    <div className="font-sans antialiased  bg-gray-100 text-gray-900 py-8 flex flex-col place-items-center">
-      <div className="text-center flex flex-col space-y-8 w-7/12 lg:w-5/12">
+    <div className="font-sans antialiased min-h-screen  bg-gray-100 text-gray-900 py-8 flex flex-col place-items-center">
+      <div className="text-center flex flex-col space-y-8 w-7/12 lg:w-5/12 h-full">
         {/* Search */}
-        <div>
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            className="border focus:outline-none rounded-l-lg p-2"
-          />
-          <button onClick={fetchAnimeData} className="border bg-gray-200 rounded-r-lg p-2">
-            Search
+        <div className="flex space-x-4 justify-center">
+          <div>
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="border focus:outline-none rounded-l-lg p-2"
+            />
+            <button onClick={fetchAnimeData} className="border bg-gray-200 rounded-r-lg p-2">
+              Search
+            </button>
+          </div>
+          <button onClick={toggleFavoritesSection} className="border bg-gray-200 rounded-lg p-2">
+            Favorites
           </button>
         </div>
 
-        {/* Results */}
+        {/* Favorites or results */}
         <div className="flex flex-col space-y-8">
-          {results.map((result, i) => {
-            return (
-              <AnimeCard
-                key={i}
-                image_url={result.image_url}
-                title={result.title}
-                score={result.score}
-                episodes={result.episodes}
-                synopsis={result.synopsis}
-              ></AnimeCard>
-            );
-          })}
+          {showFavorites &&
+            favorites.map((result, i) => {
+              return (
+                <AnimeCard
+                  key={i}
+                  image_url={result.image_url}
+                  title={result.title}
+                  score={result.score}
+                  episodes={result.episodes}
+                  synopsis={result.synopsis}
+                ></AnimeCard>
+              );
+            })}
+          {!showFavorites &&
+            results.map((result, i) => {
+              return (
+                <AnimeCard
+                  key={i}
+                  image_url={result.image_url}
+                  title={result.title}
+                  score={result.score}
+                  episodes={result.episodes}
+                  synopsis={result.synopsis}
+                  favorites={favorites}
+                  setFavorites={setFavorites}
+                ></AnimeCard>
+              );
+            })}
         </div>
       </div>
     </div>
