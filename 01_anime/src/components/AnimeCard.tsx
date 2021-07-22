@@ -4,10 +4,10 @@ import { IAnime } from '../App';
 
 export const AnimeCard = (props: IAnime) => {
   let cardColor = 'bg-red-500';
-  if (props.score >= 6.5) {
+  if (props.score >= 6.9) {
     cardColor = 'bg-yellow-400';
   }
-  if (props.score >= 7.6) {
+  if (props.score >= 7.9) {
     cardColor = 'bg-green-500';
   }
 
