@@ -44,7 +44,7 @@ export const App = () => {
   };
 
   return (
-    <div className="font-sans antialiased  bg-black text-white py-10 px-40">
+    <div className="font-sans antialiased  bg-black text-white py-8 px-40">
       <div className="text-center flex flex-col space-y-8">
         {/* Search */}
         <div className="">
