@@ -13,7 +13,7 @@ export default function Board() {
     const fetch10Pokemon = () => {
       let promises = [];
       for (let i = 1; i <= 5; i++) {
-        const pokemonNumber = Math.round(Math.random() * 151 + 1);
+        const pokemonNumber = Math.round(Math.random() * 150 + 1);
         promises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`));
       }
       return Promise.all(promises);
