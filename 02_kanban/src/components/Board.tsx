@@ -69,7 +69,7 @@ export default function Board() {
               ref={a.innerRef}
               {...a.droppableProps}
               className={`flex flex-col space-y-4 ${
-                droppableSnapshot.isDraggingOver ? 'bg-gray-900' : ''
+                droppableSnapshot.isDraggingOver ? 'bg-red-800' : ''
               }`}
             >
               {pokemon.map((prop, i) => {
@@ -77,8 +77,8 @@ export default function Board() {
                   <Draggable draggableId={prop.name} index={i} key={prop.name}>
                     {(b, snapshot) => (
                       <div
-                        className={`border rounded p-2 flex place-items-center ${
-                          snapshot.isDragging ? 'bg-green-500' : ''
+                        className={`border rounded p-2 flex place-items-center  ${
+                          snapshot.isDragging ? 'bg-green-500' : 'bg-blue-500'
                         }`}
                         {...b.dragHandleProps}
                         {...b.draggableProps}
