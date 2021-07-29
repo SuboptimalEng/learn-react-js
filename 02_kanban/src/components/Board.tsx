@@ -63,15 +63,23 @@ export default function Board() {
   return (
     <DragDropContext onDragEnd={dragEnded}>
       <Droppable droppableId="first-column">
-        {(a) => (
+        {(a, droppableSnapshot) => (
           <div>
-            <div ref={a.innerRef} {...a.droppableProps} className="flex flex-col space-y-4">
+            <div
+              ref={a.innerRef}
+              {...a.droppableProps}
+              className={`flex flex-col space-y-4 ${
+                droppableSnapshot.isDraggingOver ? 'bg-gray-900' : ''
+              }`}
+            >
               {pokemon.map((prop, i) => {
                 return (
                   <Draggable draggableId={prop.name} index={i} key={prop.name}>
-                    {(b) => (
+                    {(b, snapshot) => (
                       <div
-                        className="border rounded p-2 flex place-items-center"
+                        className={`border rounded p-2 flex place-items-center ${
+                          snapshot.isDragging ? 'bg-green-500' : ''
+                        }`}
                         {...b.dragHandleProps}
                         {...b.draggableProps}
                         ref={b.innerRef}
