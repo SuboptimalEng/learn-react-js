@@ -48,12 +48,14 @@ export default function Board() {
     if (!destination) {
       return;
     }
+
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
     ) {
       return;
     }
+
     const sourcePokemon: IPokemon = pokemon.find(
       (pokemon) => pokemon.name === draggableId
     ) as IPokemon;
@@ -64,26 +66,28 @@ export default function Board() {
   };
   return (
     <DragDropContext onDragEnd={dragEnded}>
+      Drag and Drop Context
       <Droppable droppableId="first-column">
-        {(droppableProvided) => (
-          <div>
+        {(dropProvided) => (
+          <div className="border bg-red-700">
+            Droppable
             <div
-              ref={droppableProvided.innerRef}
-              {...droppableProvided.droppableProps}
+              ref={dropProvided.innerRef}
+              {...dropProvided.droppableProps}
               className="flex flex-col space-y-4"
             >
               {pokemon.map((prop, i) => {
                 return (
                   <Draggable draggableId={prop.name} index={i} key={prop.name}>
-                    {(draggableProvided) => (
+                    {(dragProvided) => (
                       <div
-                        ref={draggableProvided.innerRef}
-                        {...draggableProvided.dragHandleProps}
-                        {...draggableProvided.draggableProps}
-                        className="border rounded p-2 flex place-items-center"
+                        ref={dragProvided.innerRef}
+                        {...dragProvided.dragHandleProps}
+                        {...dragProvided.draggableProps}
+                        className="border rounded p-2 flex place-items-center bg-blue-500"
                       >
                         <div>
-                          <img src={prop.url} alt="" className="w-32" />
+                          <img src={prop.url} alt="" className="w-24" />
                         </div>
                         <div>{prop.name}</div>
                       </div>
@@ -91,7 +95,7 @@ export default function Board() {
                   </Draggable>
                 );
               })}
-              {droppableProvided.placeholder}
+              {dropProvided.placeholder}
             </div>
           </div>
         )}
