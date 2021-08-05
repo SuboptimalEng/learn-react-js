@@ -48,12 +48,14 @@ export default function Board() {
     if (!destination) {
       return;
     }
+
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
     ) {
       return;
     }
+
     const sourcePokemon: IPokemon = pokemon.find(
       (pokemon) => pokemon.name === draggableId
     ) as IPokemon;
@@ -64,38 +66,34 @@ export default function Board() {
   };
   return (
     <DragDropContext onDragEnd={dragEnded}>
+      Drag and Drop Context
       <Droppable droppableId="first-column">
-        {(a, droppableSnapshot) => (
-          <div>
+        {(dropProvided) => (
+          <div className="border bg-red-700">
+            Droppable
             <div
-              ref={a.innerRef}
-              {...a.droppableProps}
-              className={`flex flex-col space-y-4 ${
-                droppableSnapshot.isDraggingOver ? 'bg-red-800' : ''
-              }`}
+              ref={dropProvided.innerRef}
+              {...dropProvided.droppableProps}
+              className="flex flex-col space-y-4"
             >
-              {pokemon.map((prop, i) => {
-                return (
-                  <Draggable draggableId={prop.name} index={i} key={prop.name}>
-                    {(b, snapshot) => (
-                      <div
-                        className={`border rounded p-2 flex place-items-center  ${
-                          snapshot.isDragging ? 'bg-green-500' : 'bg-blue-500'
-                        }`}
-                        {...b.dragHandleProps}
-                        {...b.draggableProps}
-                        ref={b.innerRef}
-                      >
-                        <div>
-                          <img src={prop.url} alt="" className="w-32" />
-                        </div>
-                        <div>{prop.name}</div>
+              {pokemon.map((prop, i) => (
+                <Draggable draggableId={prop.name} index={i} key={prop.name}>
+                  {(dragProvided) => (
+                    <div
+                      ref={dragProvided.innerRef}
+                      {...dragProvided.dragHandleProps}
+                      {...dragProvided.draggableProps}
+                      className="border rounded p-2 flex place-items-center bg-blue-500"
+                    >
+                      <div>
+                        <img src={prop.url} alt="" className="w-24" />
                       </div>
-                    )}
-                  </Draggable>
-                );
-              })}
-              {a.placeholder}
+                      <div>{prop.name}</div>
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {dropProvided.placeholder}
             </div>
           </div>
         )}
