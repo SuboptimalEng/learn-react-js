@@ -76,25 +76,23 @@ export default function Board() {
               {...dropProvided.droppableProps}
               className="flex flex-col space-y-4"
             >
-              {pokemon.map((prop, i) => {
-                return (
-                  <Draggable draggableId={prop.name} index={i} key={prop.name}>
-                    {(dragProvided) => (
-                      <div
-                        ref={dragProvided.innerRef}
-                        {...dragProvided.dragHandleProps}
-                        {...dragProvided.draggableProps}
-                        className="border rounded p-2 flex place-items-center bg-blue-500"
-                      >
-                        <div>
-                          <img src={prop.url} alt="" className="w-24" />
-                        </div>
-                        <div>{prop.name}</div>
+              {pokemon.map((prop, i) => (
+                <Draggable draggableId={prop.name} index={i} key={prop.name}>
+                  {(dragProvided) => (
+                    <div
+                      ref={dragProvided.innerRef}
+                      {...dragProvided.dragHandleProps}
+                      {...dragProvided.draggableProps}
+                      className="border rounded p-2 flex place-items-center bg-blue-500"
+                    >
+                      <div>
+                        <img src={prop.url} alt="" className="w-24" />
                       </div>
-                    )}
-                  </Draggable>
-                );
-              })}
+                      <div>{prop.name}</div>
+                    </div>
+                  )}
+                </Draggable>
+              ))}
               {dropProvided.placeholder}
             </div>
           </div>
