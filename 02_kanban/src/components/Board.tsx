@@ -14,7 +14,9 @@ export default function Board() {
       let promises = [];
       for (let i = 1; i <= 5; i++) {
         const pokemonNumber = Math.round(Math.random() * 150 + 1);
-        promises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`));
+        promises.push(
+          fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`)
+        );
       }
       return Promise.all(promises);
     };
@@ -46,18 +48,18 @@ export default function Board() {
     if (!destination) {
       return;
     }
-
-    if (destination.droppableId === source.droppableId && destination.index === source.index) {
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
       return;
     }
-
     const sourcePokemon: IPokemon = pokemon.find(
       (pokemon) => pokemon.name === draggableId
     ) as IPokemon;
     const updatedPokemon: IPokemon[] = Array.from(pokemon);
     updatedPokemon.splice(source.index, 1);
     updatedPokemon.splice(destination.index, 0, sourcePokemon);
-    console.log({ updatedPokemon });
     setPokemon(updatedPokemon);
   };
   return (
