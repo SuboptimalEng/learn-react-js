@@ -65,24 +65,22 @@ export default function Board() {
   return (
     <DragDropContext onDragEnd={dragEnded}>
       <Droppable droppableId="first-column">
-        {(a) => (
+        {(droppableProvided) => (
           <div>
             <div
-              ref={a.innerRef}
-              {...a.droppableProps}
+              ref={droppableProvided.innerRef}
+              {...droppableProvided.droppableProps}
               className="flex flex-col space-y-4"
             >
               {pokemon.map((prop, i) => {
                 return (
                   <Draggable draggableId={prop.name} index={i} key={prop.name}>
-                    {(b, snapshot) => (
+                    {(draggableProvided) => (
                       <div
-                        className={`border rounded p-2 flex place-items-center  ${
-                          snapshot.isDragging ? 'bg-green-500' : 'bg-blue-500'
-                        }`}
-                        {...b.dragHandleProps}
-                        {...b.draggableProps}
-                        ref={b.innerRef}
+                        ref={draggableProvided.innerRef}
+                        {...draggableProvided.dragHandleProps}
+                        {...draggableProvided.draggableProps}
+                        className="border rounded p-2 flex place-items-center"
                       >
                         <div>
                           <img src={prop.url} alt="" className="w-32" />
@@ -93,7 +91,7 @@ export default function Board() {
                   </Draggable>
                 );
               })}
-              {a.placeholder}
+              {droppableProvided.placeholder}
             </div>
           </div>
         )}
