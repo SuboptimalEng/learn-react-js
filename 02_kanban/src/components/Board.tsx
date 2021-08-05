@@ -43,7 +43,7 @@ export default function Board() {
       });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const dragEnded = (result: any) => {
+  const updatePokemonOrdering = (result: any) => {
     const { destination, source, draggableId } = result;
     if (!destination) {
       return;
@@ -64,20 +64,19 @@ export default function Board() {
     updatedPokemon.splice(destination.index, 0, sourcePokemon);
     setPokemon(updatedPokemon);
   };
+
   return (
-    <DragDropContext onDragEnd={dragEnded}>
-      Drag and Drop Context
+    <DragDropContext onDragEnd={updatePokemonOrdering}>
       <Droppable droppableId="first-column">
         {(dropProvided) => (
           <div className="border bg-red-700">
-            Droppable
             <div
               ref={dropProvided.innerRef}
               {...dropProvided.droppableProps}
               className="flex flex-col space-y-4"
             >
-              {pokemon.map((prop, i) => (
-                <Draggable draggableId={prop.name} index={i} key={prop.name}>
+              {pokemon.map((p, i) => (
+                <Draggable draggableId={p.name} index={i} key={p.name}>
                   {(dragProvided) => (
                     <div
                       ref={dragProvided.innerRef}
@@ -86,9 +85,9 @@ export default function Board() {
                       className="border rounded p-2 flex place-items-center bg-blue-500"
                     >
                       <div>
-                        <img src={prop.url} alt="" className="w-24" />
+                        <img src={p.url} alt="" className="w-24" />
                       </div>
-                      <div>{prop.name}</div>
+                      <div>{p.name}</div>
                     </div>
                   )}
                 </Draggable>
