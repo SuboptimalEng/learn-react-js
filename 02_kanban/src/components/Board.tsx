@@ -82,7 +82,7 @@ export default function Board() {
                       ref={dragProvided.innerRef}
                       {...dragProvided.dragHandleProps}
                       {...dragProvided.draggableProps}
-                      className="border rounded p-2 flex place-items-center bg-blue-500"
+                      className="border  p-2 flex place-items-center bg-blue-500"
                     >
                       <div>
                         <img src={p.url} alt="" className="w-24" />
