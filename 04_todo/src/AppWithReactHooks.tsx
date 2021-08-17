@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
+import { IToDo } from './App';
 import './App.css';
 
-export interface IToDo {
-  id: number;
-  text: string;
-  completed: boolean;
-}
-
-function App2() {
+function AppWithReactHooks() {
   const [toDos, setToDos] = useState<Array<IToDo>>([
     {
       id: Math.floor(Math.random() * 1000),
@@ -17,7 +12,7 @@ function App2() {
     {
       id: Math.floor(Math.random() * 1000),
       text: 'there',
-      completed: true,
+      completed: false,
     },
     {
       id: Math.floor(Math.random() * 1000),
@@ -103,4 +98,4 @@ function App2() {
   );
 }
 
-export default App2;
+export default AppWithReactHooks;
