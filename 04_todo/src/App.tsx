@@ -9,10 +9,9 @@ export interface IToDo {
 }
 
 function App() {
-  const [counter, setCounter] = useState(0);
-  console.log(counter, setCounter);
   // NOTE: Check how app is done with hooks
   // return <AppWithReactHooks></AppWithReactHooks>;
+  const [counter, setCounter] = useState(0);
   return (
     <div className="App ">
       <header className="App-header">
