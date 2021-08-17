@@ -30,6 +30,7 @@ function App() {
       completed: true,
     },
   ]);
+  const [toDo, setToDo] = useState('');
 
   const toggleToDo = (toDoId: number) => {
     const i = toDos.findIndex((toDo) => toDo.id === toDoId);
@@ -38,11 +39,24 @@ function App() {
     setToDos(newToDos);
   };
 
+  const addToDo = () => {
+    setToDos([
+      ...toDos,
+      {
+        id: Math.floor(Math.random() * 1000),
+        text: toDo,
+        completed: false,
+      },
+    ]);
+    setToDo('');
+  };
+
   return (
     <div className="App ">
       <header className="App-header">
         <div className="text-6xl flex flex-col place-items-center space-y-4">
-          <div>
+          <div className="w-80 flex flex-col">
+            {/* Display ToDos */}
             {toDos.map((toDo) => {
               return (
                 <div key={toDo.id}>
@@ -70,6 +84,18 @@ function App() {
                 </div>
               );
             })}
+            {/* Add ToDos */}
+            <div className="w-full mt-4 flex place-items-center justify-between">
+              <input
+                type="text"
+                value={toDo}
+                onChange={(e) => setToDo(e.target.value)}
+                className="w-60 h-20 rounded-lg text-black p-2"
+              />
+              <div className="text-4xl" onClick={() => addToDo()}>
+                ✅
+              </div>
+            </div>
           </div>
         </div>
       </header>
