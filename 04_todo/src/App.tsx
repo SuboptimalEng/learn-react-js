@@ -1,11 +1,11 @@
-import React from "react";
-import "./App.css";
+import React from 'react';
+import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div>To-Do App</div>
+        <div className="text-blue-500">To-Do App</div>
       </header>
     </div>
   );
