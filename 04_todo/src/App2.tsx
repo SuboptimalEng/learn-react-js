@@ -7,7 +7,7 @@ export interface IToDo {
   completed: boolean;
 }
 
-function App() {
+function App2() {
   const [toDos, setToDos] = useState<Array<IToDo>>([
     {
       id: Math.floor(Math.random() * 1000),
@@ -17,6 +17,16 @@ function App() {
     {
       id: Math.floor(Math.random() * 1000),
       text: 'there',
+      completed: true,
+    },
+    {
+      id: Math.floor(Math.random() * 1000),
+      text: 'hello',
+      completed: true,
+    },
+    {
+      id: Math.floor(Math.random() * 1000),
+      text: 'world',
       completed: true,
     },
   ]);
@@ -93,4 +103,4 @@ function App() {
   );
 }
 
-export default App;
+export default App2;
