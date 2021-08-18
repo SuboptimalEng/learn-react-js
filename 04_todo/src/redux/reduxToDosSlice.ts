@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IToDo } from '../App';
-import { RootState } from './store';
+// import { RootState } from './store';
 
 interface IInitialState {
   reduxToDos: Array<IToDo>;
@@ -32,16 +32,22 @@ export const reduxToDosSlice = createSlice({
         completed: false,
       });
     },
-    // // Use the PayloadAction type to declare the contents of `action.payload`
+    // Use the PayloadAction type to declare the contents of `action.payload`
+    reduxToggleToDo: (state, action: PayloadAction<number>) => {
+      const reduxToDoIndex = state.reduxToDos.findIndex(
+        (reduxToDo) => reduxToDo.id === action.payload
+      );
+      const newToDos = [...state.reduxToDos];
+      newToDos[reduxToDoIndex].completed = !newToDos[reduxToDoIndex].completed;
+      state.reduxToDos = newToDos;
+    },
     // incrementByAmount: (state, action: PayloadAction<number>) => {
     //   state.value += action.payload;
     // },
   },
 });
 
-export const { reduxAddToDo } = reduxToDosSlice.actions;
-
 // Other code such as selectors can use the imported `RootState` type
-export const reduxToDos = (state: RootState) => state.reduxToDos;
-
+// export const reduxToDos = (state: RootState) => state.reduxToDos;
+export const { reduxAddToDo, reduxToggleToDo } = reduxToDosSlice.actions;
 export default reduxToDosSlice.reducer;

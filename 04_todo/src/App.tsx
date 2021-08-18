@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import AppWithReactHooks from './AppWithReactHooks';
 import './App.css';
+import React, { useState } from 'react';
+// import AppWithReactHooks from './AppWithReactHooks';
+
+// NOTE: State management
+import { AppDispatch, RootState } from './redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from './redux/store';
-import { reduxAddToDo } from './redux/reduxToDosSlice';
+import { reduxAddToDo, reduxToggleToDo } from './redux/reduxToDosSlice';
 
 export interface IToDo {
   id: number;
@@ -12,8 +14,10 @@ export interface IToDo {
 }
 
 function App() {
-  const { reduxToDos } = useSelector((state: RootState) => state.reduxToDos);
-  const dispatch = useDispatch();
+  const { reduxToDos } = useSelector(
+    (state: RootState) => state.reduxToDosState
+  );
+  const dispatch = useDispatch<AppDispatch>();
 
   console.log(reduxToDos);
 
@@ -39,17 +43,17 @@ function App() {
                       {toDo.text}
                     </div>
 
-                    {/* {toDo.completed ? (
+                    {toDo.completed ? (
                       <div
                         className="border mb-2 p-4 bg-green-500 rounded"
-                        onClick={() => toggleToDo(toDo.id)}
+                        onClick={() => dispatch(reduxToggleToDo(toDo.id))}
                       ></div>
                     ) : (
                       <div
                         className="border mb-2 p-4 bg-white rounded"
-                        onClick={() => toggleToDo(toDo.id)}
+                        onClick={() => dispatch(reduxToggleToDo(toDo.id))}
                       ></div>
-                    )} */}
+                    )}
                   </div>
                 </div>
               );
@@ -64,7 +68,7 @@ function App() {
               />
               <div
                 className="text-4xl"
-                onClick={() => dispatch(reduxAddToDo('asd'))}
+                onClick={() => dispatch(reduxAddToDo(toDo))}
               >
                 ✅
               </div>
