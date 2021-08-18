@@ -4,7 +4,7 @@
 - React
 - Redux
 - TypeScript
-- Tailwind (Themes)
+- Tailwind CSS
 
 ### Getting Started
 
