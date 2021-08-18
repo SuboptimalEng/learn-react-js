@@ -17,9 +17,6 @@ function App() {
           <div onClick={() => applyTheme(baseTheme)}>Base theme</div>
           <div onClick={() => applyTheme(darkTheme)}>Dark theme</div>
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
           <div className="border p-2 ">Learn React</div>
         </div>
       </header>
