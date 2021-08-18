@@ -1,9 +1,12 @@
-# React + TypeScript + Tailwind (Themes) Template
+# React Boilerplate
 
+### Tech
 - React
 - Redux
 - TypeScript
 - Tailwind (Themes)
+
+### Getting Started
 
 ```
 npm install
