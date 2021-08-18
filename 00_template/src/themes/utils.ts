@@ -5,7 +5,6 @@ export function applyTheme(theme: ITheme) {
   Object.keys(theme).forEach((cssVar) => {
     root.style.setProperty(cssVar, theme[cssVar]);
   });
-  console.log(root.style);
 }
 
 export interface ICreateTheme {
