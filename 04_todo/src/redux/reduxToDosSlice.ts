@@ -33,9 +33,9 @@ export const reduxToDosSlice = createSlice({
       });
     },
     // Use the PayloadAction type to declare the contents of `action.payload`
-    reduxToggleToDo: (state, action: PayloadAction<number>) => {
+    reduxToggleToDo: (state, action: PayloadAction<IToDo>) => {
       const reduxToDoIndex = state.reduxToDos.findIndex(
-        (reduxToDo) => reduxToDo.id === action.payload
+        (reduxToDo) => reduxToDo.id === action.payload.id
       );
       const newToDos = [...state.reduxToDos];
       newToDos[reduxToDoIndex].completed = !newToDos[reduxToDoIndex].completed;

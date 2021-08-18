@@ -3,7 +3,7 @@ import reduxToDosSliceReducer from './reduxToDosSlice';
 
 const store = configureStore({
   reducer: {
-    reduxToDosState: reduxToDosSliceReducer,
+    reduxToDos: reduxToDosSliceReducer,
   },
 });
 

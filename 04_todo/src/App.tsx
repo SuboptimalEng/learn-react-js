@@ -14,14 +14,18 @@ export interface IToDo {
 }
 
 function App() {
-  const { reduxToDos } = useSelector(
-    (state: RootState) => state.reduxToDosState
-  );
   const dispatch = useDispatch<AppDispatch>();
+  const { reduxToDos } = useSelector((state: RootState) => state.reduxToDos);
 
   console.log(reduxToDos);
 
   const [toDo, setToDo] = useState('');
+
+  const maybeAddToDo = () => {
+    if (toDo.length > 0) {
+      dispatch(reduxAddToDo(toDo));
+    }
+  };
 
   // NOTE: Check how app is done with hooks
   // return <AppWithReactHooks></AppWithReactHooks>;
@@ -46,12 +50,12 @@ function App() {
                     {toDo.completed ? (
                       <div
                         className="border mb-2 p-4 bg-green-500 rounded"
-                        onClick={() => dispatch(reduxToggleToDo(toDo.id))}
+                        onClick={() => dispatch(reduxToggleToDo(toDo))}
                       ></div>
                     ) : (
                       <div
                         className="border mb-2 p-4 bg-white rounded"
-                        onClick={() => dispatch(reduxToggleToDo(toDo.id))}
+                        onClick={() => dispatch(reduxToggleToDo(toDo))}
                       ></div>
                     )}
                   </div>
@@ -66,10 +70,7 @@ function App() {
                 onChange={(e) => setToDo(e.target.value)}
                 className="w-60 h-20 rounded-lg text-black p-2"
               />
-              <div
-                className="text-4xl"
-                onClick={() => dispatch(reduxAddToDo(toDo))}
-              >
+              <div className="text-4xl" onClick={maybeAddToDo}>
                 ✅
               </div>
             </div>
