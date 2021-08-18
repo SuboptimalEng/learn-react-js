@@ -6,6 +6,6 @@ export interface ITheme {
 
 export const baseTheme = createTheme({
   primary: 'blue',
-  secondary: 'gray',
-  textBase: 'green',
+  secondary: '#991B1B',
+  textBase: 'white',
 });
