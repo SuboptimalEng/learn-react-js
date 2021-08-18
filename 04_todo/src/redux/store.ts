@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-// ...
+import reduxToDosSliceReducer from './reduxToDosSlice';
 
 const store = configureStore({
   reducer: {
-    // posts: postsReducer,
-    // comments: commentsReducer,
-    // users: usersReducer,
+    reduxToDos: reduxToDosSliceReducer,
   },
 });
+
+export default store;
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
