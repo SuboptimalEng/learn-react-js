@@ -3,9 +3,9 @@
 ### Tech
 
 - React
-- Redux
 - TypeScript
-- Tailwind CSS
+- Redux (counter example)
+- Tailwind CSS (toggle themes)
 
 ### Getting Started
 
