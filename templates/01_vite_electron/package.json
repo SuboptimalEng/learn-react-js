@@ -1,7 +1,7 @@
 {
   "name": "01_vite_electron",
   "version": "0.0.1",
-  "main": "main.ts",
+  "main": "./src/main/electron.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

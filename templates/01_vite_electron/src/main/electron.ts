@@ -1,3 +1,4 @@
+// import { app, BrowserWindow } from 'electron';
 const { app, BrowserWindow } = require('electron');
 
 function createWindow() {
@@ -6,8 +7,8 @@ function createWindow() {
     height: 600,
   });
 
-  // win.loadFile('index.html');
-  win.loadURL('localhost:3000');
+  win.loadFile('index.html');
+  // win.loadURL('localhost:3000');
 }
 
 // This method will be called when Electron has finished
