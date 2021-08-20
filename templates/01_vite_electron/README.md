@@ -14,4 +14,4 @@ npm install
 npm run start
 ```
 
-### Screenshots
+### Screenshot

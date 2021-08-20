@@ -1,6 +1,7 @@
 # React Boilerplate
 
 ### Tech
+
 - React
 - Redux
 - TypeScript
@@ -12,3 +13,5 @@
 npm install
 npm run start
 ```
+
+### Screenshot
