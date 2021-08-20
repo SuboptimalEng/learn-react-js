@@ -16,4 +16,4 @@ npm run start
 
 ### Screenshot
 
-![Screen Shot 2021-08-20 at 5 29 14 PM](https://user-images.githubusercontent.com/70355008/130299358-6fc50520-f4f6-447f-ab7c-085ff8d56274.png)
+![Screen Shot 2021-08-20 at 5 59 24 PM](https://user-images.githubusercontent.com/70355008/130301019-a9e17a63-4d5e-4446-a13b-64a0e39f40f9.png)
