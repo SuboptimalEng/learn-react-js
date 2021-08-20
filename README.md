@@ -1,2 +1,2 @@
 # ⚛️ LearnReact
-### A project-based approach to learning React + TypeScript + GraphQL.
+### A project-based approach to learning React + TypeScript.
