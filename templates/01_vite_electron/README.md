@@ -1,14 +1,17 @@
 # React + Vite + Electron Boilerplate
 
 ### Tech
+
+- Vite
 - React
 - TypeScript
-- Vite
 - Electron
 
 ### Getting Started
+
 ```
 npm install
 npm run start
 ```
 
+### Screenshots
