@@ -1,5 +1,3 @@
-# React Boilerplate
-
 ### Tech
 
 - React
