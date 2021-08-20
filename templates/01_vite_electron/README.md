@@ -5,7 +5,7 @@
 - Vite
 - React
 - TypeScript
-- Electron
+- Electron (transparent)
 
 ### Getting Started
 
