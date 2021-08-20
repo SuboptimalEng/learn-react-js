@@ -1,5 +1,3 @@
-# React + Vite + Electron Boilerplate
-
 ### Tech
 
 - Vite
