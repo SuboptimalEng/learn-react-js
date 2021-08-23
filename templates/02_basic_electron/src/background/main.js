@@ -5,14 +5,18 @@ const isDev = require('electron-is-dev');
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1200,
+    height: 900,
     vibrancy: 'under-window',
     visualEffectState: 'followWindow',
+    webPreferences: {
+      nodeIntegration: false,
+      contextIsolation: true,
+      enableRemoteModule: false,
+    },
   });
 
   // win.loadFile('index.html');
-  win.loadURL('http://localhost:3000');
   win.loadURL(
     isDev
       ? 'http://localhost:3000'

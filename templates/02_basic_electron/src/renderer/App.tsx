@@ -17,8 +17,9 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <div className="bg-secondary text-text-base flex flex-col place-items-center">
+      <header className="App-header ">
+        {/* TODO: Figure out bg opacity. */}
+        <div className="bg-secondary bg-opacity-0 text-text-base flex flex-col place-items-center">
           <div className="flex">
             <div
               onClick={() => applyTheme(baseTheme)}
