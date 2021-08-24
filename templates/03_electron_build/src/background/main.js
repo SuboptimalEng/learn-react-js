@@ -17,10 +17,15 @@ function createWindow() {
   });
 
   // win.loadFile('index.html');
+  // "extends": null
+  // "main": "src/background/main.js",
+  // "homepage": "./",
+  // "electron-pack": "build --em.main=build/electron.js",
+
   win.loadURL(
     isDev
       ? 'http://localhost:3000'
-      : `file://${path.join(__dirname, '../build/index.html')}`
+      : `file://${path.join(__dirname, '../../build/index.html')}`
   );
 }
 
