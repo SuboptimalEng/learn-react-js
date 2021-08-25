@@ -16,11 +16,25 @@ function createWindow() {
     },
   });
 
-  // win.loadFile('index.html');
-  // "extends": null
   // "main": "src/background/main.js",
   // "homepage": "./",
-  // "electron-pack": "build --em.main=build/electron.js",
+  // "build": {
+  //   "appId": "com.electron.example-app",
+  //   "mac": {
+  //     "target": [
+  //       "dmg",
+  //       "zip"
+  //     ]
+  //   },
+  //   "files": [
+  //     "**/*",
+  //     "build/**/*"
+  //   ],
+  //   "extraMetadata": {
+  //     "main": "src/background/main.js"
+  //   },
+  //   "extends": null
+  // },
 
   win.loadURL(
     isDev

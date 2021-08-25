@@ -29,12 +29,12 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "dev": "concurrently -k \"BROWSER=none npm start\" \"npm:electron\"",
+    "dev": "concurrently -k \"BROWSER=none npm run start\" \"npm run electron\"",
     "electron": "wait-on tcp:3000 && electron .",
     "eject": "react-scripts eject",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "electron-pack": "electron-builder -c.extraMetadata.main=src/background/main.js",
+    "electron-pack": "electron-builder",
     "preelectron-pack": "npm run build"
   },
   "build": {
@@ -49,6 +49,9 @@
       "**/*",
       "build/**/*"
     ],
+    "extraMetadata": {
+      "main": "src/background/main.js"
+    },
     "extends": null
   },
   "eslintConfig": {
