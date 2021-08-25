@@ -10,7 +10,7 @@
 
 ```
 npm install
-npm run start
+npm run electron-pack
 ```
 
 ## Screenshot
